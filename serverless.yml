@@ -30,7 +30,7 @@ provider:
 
 functions:
   sort-marbles:
-    handler: index.handler
+    handler: handler.handler
     events:
       - httpApi:
           path: /sort-marbles

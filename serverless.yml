@@ -1,21 +1,37 @@
 service: ${file(package.json):name, 'marbles-challenge'}
 frameworkVersion: '3'
 
-# plugins: 
-# custom: 
+plugins:
+  - serverless-esbuild
+  - serverless-offline
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+  defaultStage: dev
+  defaultRegion: us-east-1
+  serverless-offline:
+    host: localhost
+    httpPort: 8010
+    lambdaPort: 8002
+    noPrependStageInUrl: true
+  esbuild:
+    outputFileExtension: ".js"
+    platform: "node"
+    target: "esnext"
+    sourcemap: both
 
 provider: 
   name: aws
-    stage: ${opt:stage, self:custom.defaultStage}
-    region: ${opt:region, self:custom.defaultRegion}
-    runtime: nodejs16.x
-    memorySize: 512
-    timeout: 300
+  stage: ${opt:stage, self:custom.defaultStage}
+  region: ${opt:region, self:custom.defaultRegion}
+  runtime: nodejs16.x
+  memorySize: 512
+  timeout: 300
 
 functions:
-  harvestbot-sheets-updates:
+  sort-marbles:
     handler: index.handler
     events:
       - httpApi:
-          path: /harvestbot-sheets-updates
+          path: /sort-marbles
           method: GET

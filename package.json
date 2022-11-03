@@ -4,6 +4,7 @@
   "description": "A Programming challenge",
   "main": "index.js",
   "scripts": {
+    "start": "sls offline start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/iruiz-horse/marbles_challenge/issues"
   },
-  "homepage": "https://github.com/iruiz-horse/marbles_challenge#readme"
+  "homepage": "https://github.com/iruiz-horse/marbles_challenge#readme",
+  "devDependencies": {
+    "esbuild": "^0.15.13",
+    "serverless": "^3.24.0",
+    "serverless-esbuild": "^1.33.1",
+    "serverless-offline": "^11.2.3"
+  }
 }

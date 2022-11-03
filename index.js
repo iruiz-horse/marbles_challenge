@@ -1,4 +1,22 @@
-//Main function Sorts and filters all marbles
+/**
+ * To Host this code, I’ll go with a AWS Lambda function and a serverless approach in general. To trigger that lambda function 
+ * I would use an API Gateway endpoint or maybe an Event Bridge schedule to automate the process.
+ * 
+ * To deploy I’ll like to use GitHub Actions so the developers can create pull requests to merge their features branches 
+ * into the develop branch. So, the Actions can deploy to staging when the develop branch is merged and to prod when 
+ * the main branch is updated.
+ * 
+ * I’ll like to use the serverless framework to run and build it as a lambda function to make it provider-agnostic.
+ * 
+ * 
+ *  */
+
+/**
+ * Main function Sorts and filters all marbles
+ * @param {Array} marbles Bob's marbles
+ * @returns Array of sorted and filtered marbles
+ */
+
 function processMarbles(marbles){
     /**
      * Using js native filter, Maybe using a custom function could optimize memory

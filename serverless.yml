@@ -1,10 +1,16 @@
 service: ${file(package.json):name, 'marbles-challenge'}
 frameworkVersion: '3'
 
-plugins: ${file(../../serverless.common.yml):plugins}
+# plugins: 
+# custom: 
 
-custom: ${file(../../serverless.common.yml):custom}
-provider: ${file(../../serverless.common.yml):provider}
+provider: 
+  name: aws
+    stage: ${opt:stage, self:custom.defaultStage}
+    region: ${opt:region, self:custom.defaultRegion}
+    runtime: nodejs16.x
+    memorySize: 512
+    timeout: 300
 
 functions:
   harvestbot-sheets-updates:

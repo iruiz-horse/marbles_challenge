@@ -1,20 +1,42 @@
 //Main function Sorts and filters all marbles
 function processMarbles(marbles){
+    /**
+     * Using js native filter, Maybe using a custom function could optimize memory
+     */
     let result = marbles.filter(filterMarbles);
     
     return quickSort(result, 0, result.length - 1);
 }
-// Filters marbles and returns if the item is conserved
+
 function filterMarbles(marble) {
-    if (marble.weight < .5){
-        return false;
+    return (marble.weight >= .5 && isPalindrome(marble.name));
+}
+/**
+ * Using a Quick sort inspired function to check if a word it's a palindrome
+ * @param {String} word The word to test
+ * @returns True if the word it's a palindrome.
+ */
+function isPalindrome(word) {
+    const stripPunctuation = word.replace(/[\p{P}\p{S} ]/gu, '').toLowerCase();
+    let left = 0,
+    right = stripPunctuation.length -1;
+    while (left < right) {
+        if (stripPunctuation[left] != stripPunctuation[right])
+            return false;
+
+        left++;
+        right --;
     }
     return true;
 }
-
-function isPalindrome(word) {
-    //const stripPunctuation = 
-}
+/**
+ * I'm implementing a quick sort algorithm to optimize time complexity.
+ * It's worth mentioning that quick sort modifies the original Array.
+* @param {Array} items Items to sort
+ * @param {Number} left Left index
+ * @param {Number} right Right index.
+ * @returns The sorted Array
+ */
 function quickSort(items, left, right) {
     var index;
     //Quick sort for marbles
@@ -30,7 +52,7 @@ function quickSort(items, left, right) {
     return items;
 }
 
-//Applies Quick sort 
+//Applies Quick sort partition
 function partition(items, left, right) {
     var pivot   = MARBLE_ORDER[items[Math.floor((right + left) / 2)].color], //middle element value
         i       = left, //left pointer
@@ -58,7 +80,10 @@ function swapItems(items, leftIndex, rightIndex){
     items[rightIndex] = temp;
 }
 
-//Assigning each color a weight to get the desired order.
+/**
+ * Assigning each color a weight to get the desired order.
+ * Using an object as an index it's faster than indexOf
+ */
 const MARBLE_ORDER  = {
     red: 1,
     orange: 2,

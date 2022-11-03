@@ -1,0 +1,19 @@
+{
+  "name": "marbles-challenge",
+  "version": "1.0.0",
+  "description": "A Programming challenge",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iruiz-horse/marbles_challenge.git"
+  },
+  "author": "Iván Ruiz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iruiz-horse/marbles_challenge/issues"
+  },
+  "homepage": "https://github.com/iruiz-horse/marbles_challenge#readme"
+}

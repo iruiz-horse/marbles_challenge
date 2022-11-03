@@ -1,3 +1,34 @@
+//Main function Sorts and filters all marbles
+function processMarbles(marbles){
+    let result = marbles.filter(filterMarbles);
+    
+    return quickSort(result, 0, result.length - 1);
+}
+// Filters marbles and returns if the item is conserved
+function filterMarbles(marble) {
+    if (marble.weight < .5){
+        return false;
+    }
+    return true;
+}
+
+function isPalindrome(word) {
+    //const stripPunctuation = 
+}
+function quickSort(items, left, right) {
+    var index;
+    //Quick sort for marbles
+    if (items.length > 1) {
+        index = partition(items, left, right); //index returned from partition
+        if (left < index - 1) { //more elements on the left side of the pivot
+            quickSort(items, left, index - 1);
+        }
+        if (index < right) { //more elements on the right side of the pivot
+            quickSort(items, index, right);
+        }
+    }
+    return items;
+}
 
 //Applies Quick sort 
 function partition(items, left, right) {
@@ -12,7 +43,8 @@ function partition(items, left, right) {
             j--;
         }
         if (i <= j) {
-            swapItems(items, i, j); //sawpping two elements
+            swapItems(items, i, j); //swapping two elements
+            
             i++;
             j--;
         }
@@ -25,6 +57,7 @@ function swapItems(items, leftIndex, rightIndex){
     items[leftIndex] = items[rightIndex];
     items[rightIndex] = temp;
 }
+
 //Assigning each color a weight to get the desired order.
 const MARBLE_ORDER  = {
     red: 1,
@@ -49,20 +82,7 @@ const marblesSample = [
 	{ id: 10, color: "blue", name: "Bob", weight: 0.5 }
 ];
 
-function sortMarbles(items, left, right) {
-    var index;
-    //Quick sort for marbles
-    if (items.length > 1) {
-        index = partition(items, left, right); //index returned from partition
-        if (left < index - 1) { //more elements on the left side of the pivot
-            sortMarbles(items, left, index - 1);
-        }
-        if (index < right) { //more elements on the right side of the pivot
-            sortMarbles(items, index, right);
-        }
-    }
-    return items;
-}
+//call to main function
+var sortedMarbles = processMarbles(marblesSample);
 
-//call to sortMarbles
-var sortedMarbles = sortMarbles(marblesSample, 0, items.length - 1);
+console.log("🚀 ~ Sorted Marbles", sortedMarbles)
